@@ -1,13 +1,65 @@
 import { Component } from '@angular/core';
-import { SkillRadar } from '../skill-radar/skill-radar';
+import { Avatar3d } from './avatar-3d/avatar-3d';
+
+interface TeamMember {
+  name: string;
+  role: string;
+  skills: string[];
+  color: string;
+  shape: 'cube' | 'sphere' | 'torus' | 'icosahedron';
+  delay: string;
+  modelUrl?: string;
+}
 
 @Component({
   selector: 'app-team',
-  imports: [SkillRadar],
+  imports: [Avatar3d],
   templateUrl: './team.html',
   styleUrl: './team.scss',
   standalone: true
 })
 export class Team {
-
+  teamMembers: TeamMember[] = [
+    {
+      name: 'Ana Sofia Arango',
+      role: 'Lider de proyecto',
+      skills: ['Java', 'HTML', 'DevOps'],
+      color: '#ff00ff', // Magenta
+      shape: 'icosahedron',
+      delay: '0.2s'
+    },
+    {
+      name: 'Juan Esteban Martinez',
+      role: 'Web Master Developer',
+      skills: ['React', 'Node.js', 'Python'],
+      color: '#00ffff', // Cyan
+      shape: 'torus',
+      delay: '0s',
+      modelUrl: '/models/juan-esteban.glb'
+    },
+    {
+      name: 'Juan Esteban Chavez',
+      role: 'Interventor de proyecto',
+      skills: ['Docker', 'Kubernetes', 'AWS'],
+      color: '#ffff00', // Yellow
+      shape: 'sphere',
+      delay: '0.4s'
+    },
+    {
+      name: 'Juan',
+      role: 'Nomeacuerdoquehace',
+      skills: ['Docker', 'Kubernetes', 'AWS'],
+      color: '#00ff00', // Green
+      shape: 'cube',
+      delay: '0.4s'
+    },
+    {
+      name: 'Cristian',
+      role: 'Secretario de Proyecto',
+      skills: ['Docker', 'Kubernetes', 'AWS'],
+      color: '#ff8800', // Orange
+      shape: 'icosahedron',
+      delay: '0.4s'
+    }
+  ];
 }
