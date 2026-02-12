@@ -1,0 +1,143 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 80px;
+    overflow: hidden;
+
+    // Animated gradient background
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: $z-background;
+        background:
+            linear-gradient(135deg,
+                rgba($neon-lavender, 0.15) 0%,
+                rgba($neon-cyan, 0.1) 25%,
+                rgba($deep-black, 0.3) 50%,
+                rgba($neon-magenta, 0.08) 75%,
+                rgba($neon-lavender, 0.12) 100%);
+        background-size: 400% 400%;
+        animation: gradientShift 20s ease infinite;
+        filter: blur(80px);
+    }
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+    align-items: center;
+
+    @media (max-width: $breakpoint-lg) {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 6rem);
+    @include gradient-text($gradient-primary);
+    margin-bottom: $spacing-sm;
+
+
+
+    &.glitch {
+        @include glitch-effect();
+    }
+}
+
+.hero-subtitle {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-family: $font-mono;
+    color: $neon-lavender;
+    @include neon-glow($neon-lavender, 0.6);
+    margin-bottom: $spacing-md;
+    animation-delay: 0.2s;
+}
+
+.hero-description {
+    font-size: $font-size-lg;
+    color: $neon-gray;
+    max-width: 600px;
+    margin: 0 auto $spacing-lg;
+    animation-delay: 0.4s;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: $spacing-sm;
+    animation-delay: 0.6s;
+
+    @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    @media (max-width: $breakpoint-lg) {
+        justify-content: center;
+    }
+}
+
+.neon-btn {
+    padding: $spacing-sm $spacing-md;
+    font-family: $font-subheading;
+    font-size: $font-size-base;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: all $transition-base;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+
+    &--filled {
+        background: $gradient-primary;
+        border: 2px solid transparent;
+        color: $deep-black;
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba($neon-lavender, 0.5);
+        }
+    }
+
+    &--outline {
+        background: transparent;
+        @include neon-border($neon-lavender);
+        color: $neon-lavender;
+
+        &:hover {
+            background: rgba($neon-lavender, 0.1);
+            @include box-glow($neon-lavender, 1.5);
+        }
+    }
+}
+
+.hero-visual {
+    position: relative;
+}

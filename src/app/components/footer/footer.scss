@@ -1,0 +1,129 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.footer-section {
+    background: linear-gradient(180deg, transparent, rgba($neon-lavender, 0.05));
+    padding: $spacing-xl 0 $spacing-md;
+    border-top: 1px solid rgba($neon-lavender, 0.3);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
+}
+
+.footer-column {
+    .footer-title {
+        font-size: $font-size-2xl;
+        font-family: $font-heading;
+        @include gradient-text($gradient-primary);
+        margin-bottom: $spacing-sm;
+
+        .bracket {
+            color: $neon-cyan;
+        }
+    }
+
+    .footer-description {
+        color: $neon-gray;
+        margin-bottom: $spacing-md;
+    }
+}
+
+.column-title {
+    font-size: $font-size-lg;
+    color: $neon-lavender;
+    margin-bottom: $spacing-sm;
+    font-family: $font-heading;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin-bottom: $spacing-xs;
+    }
+
+    a {
+        color: $neon-gray;
+        font-size: $font-size-base;
+        transition: all $transition-base;
+        display: inline-block;
+
+        &:hover {
+            color: $neon-lavender;
+            transform: translateX(5px);
+            @include neon-glow($neon-lavender, 0.5);
+        }
+    }
+}
+
+.footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+        margin-bottom: $spacing-sm;
+        color: $neon-gray;
+
+        svg {
+            stroke: $neon-lavender;
+            flex-shrink: 0;
+        }
+    }
+}
+
+.social-links {
+    display: flex;
+    gap: $spacing-sm;
+    margin-top: $spacing-md;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    @include glassmorphism(0.3, 10px);
+    @include neon-border($neon-lavender);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $neon-lavender;
+    transition: all $transition-base;
+
+    &:hover {
+        background: rgba($neon-lavender, 0.2);
+        @include box-glow($neon-lavender, 1.5);
+        transform: translateY(-5px) rotate(360deg);
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: $spacing-md;
+    border-top: 1px solid rgba($neon-lavender, 0.2);
+
+    p {
+        color: $neon-gray;
+        font-size: $font-size-sm;
+        margin: $spacing-xs 0;
+    }
+
+    .heart {
+        color: $neon-magenta;
+        animation: pulse-glow 1.5s ease-in-out infinite;
+    }
+}

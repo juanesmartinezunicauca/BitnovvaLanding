@@ -1,0 +1,115 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: var(--z-navbar);
+    padding: $spacing-sm 0;
+    transition: all $transition-base;
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, $neon-lavender, transparent);
+        opacity: 0.5;
+    }
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: $font-size-xl;
+    font-family: $font-heading;
+    color: $pure-white;
+    margin: 0;
+    position: relative;
+
+    .bracket {
+        color: $neon-cyan;
+        @include neon-glow($neon-cyan, 0.8);
+    }
+
+    &.glitch {
+        @include glitch-effect();
+    }
+}
+
+.nav-links {
+    display: flex;
+    gap: $spacing-md;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: $breakpoint-md) {
+        display: none;
+    }
+}
+
+.nav-link {
+    font-family: $font-subheading;
+    font-size: $font-size-base;
+    color: $neon-gray;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    transition: all $transition-base;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: $gradient-primary;
+        transition: width $transition-base;
+    }
+
+    &:hover {
+        color: $neon-lavender;
+        @include neon-glow($neon-lavender, 0.5);
+
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+
+    @media (max-width: $breakpoint-md) {
+        display: flex;
+    }
+
+    span {
+        width: 25px;
+        height: 2px;
+        background: $neon-lavender;
+        transition: all $transition-base;
+        @include box-glow($neon-lavender, 0.5);
+    }
+
+    &:hover span {
+        background: $neon-cyan;
+        @include box-glow($neon-cyan, 1);
+    }
+}

@@ -1,0 +1,208 @@
+/* BitNovva Cyberpunk Landing - Global Styles */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600;700&family=Share+Tech+Mono&display=swap');
+
+/* Import partials */
+@import 'styles/variables';
+@import 'styles/mixins';
+@import 'styles/animations';
+
+/* CSS Custom Properties */
+:root {
+  /* Colors */
+  --neon-lavender: #9897f4;
+  --neon-cyan: #00ffff;
+  --neon-magenta: #ff00ff;
+  --deep-black: #000000;
+  --pure-white: #ffffff;
+  --neon-gray: #e0e0e0;
+  --grid-color: rgba(152, 151, 244, 0.1);
+
+  /* Glow Effects */
+  --glow-lavender: 0 0 10px var(--neon-lavender),
+    0 0 20px var(--neon-lavender),
+    0 0 30px var(--neon-lavender);
+  --glow-cyan: 0 0 10px var(--neon-cyan),
+    0 0 20px var(--neon-cyan),
+    0 0 30px var(--neon-cyan);
+  --glow-magenta: 0 0 10px var(--neon-magenta),
+    0 0 20px var(--neon-magenta),
+    0 0 30px var(--neon-magenta);
+
+  /* Typography */
+  --font-heading: 'Orbitron', sans-serif;
+  --font-subheading: 'Exo 2', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+
+  /* Z-index layers */
+  --z-background: -1;
+  --z-content: 1;
+  --z-navbar: 100;
+  --z-modal: 1000;
+}
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-subheading);
+  background-color: var(--deep-black);
+  color: var(--pure-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  color: var(--neon-gray);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+/* Links */
+a {
+  color: var(--neon-lavender);
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan);
+  }
+}
+
+/* Selection */
+::selection {
+  background-color: var(--neon-lavender);
+  color: var(--deep-black);
+}
+
+::-moz-selection {
+  background-color: var(--neon-lavender);
+  color: var(--deep-black);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-black);
+  border-left: 1px solid var(--grid-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-lavender), var(--neon-cyan));
+  border-radius: 5px;
+
+  &:hover {
+    background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
+  }
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.section {
+  padding: var(--spacing-xl) 0;
+  position: relative;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--neon-lavender), var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.neon-border {
+  border: 2px solid var(--neon-lavender);
+  box-shadow: inset 0 0 20px rgba(152, 151, 244, 0.2),
+    0 0 20px rgba(152, 151, 244, 0.4);
+}
+
+.glassmorphism {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(152, 151, 244, 0.2);
+}
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  :root {
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+  }
+
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+}
+
+/* Wave Ripple Effect */
+.wave-ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--neon-cyan) 0%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  animation: wave 0.6s linear;
+  pointer-events: none;
+  z-index: 9999;
+}

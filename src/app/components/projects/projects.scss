@@ -1,0 +1,81 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.projects-section {
+    padding: $spacing-xl 0;
+}
+
+.projects-grid {
+    @include grid-auto-fit(350px, $spacing-lg);
+}
+
+.project-card {
+    @include glassmorphism(0.3, 15px);
+    border-radius: $radius-lg;
+    overflow: hidden;
+    transition: all $transition-base;
+
+    &:hover {
+        @include hover-lift(20px);
+        @include box-glow($neon-magenta, 1.5);
+
+        .project-image {
+            transform: scale(1.05);
+        }
+    }
+}
+
+.project-image {
+    height: 200px;
+    background: linear-gradient(135deg, rgba($neon-magenta, 0.2), rgba($neon-lavender, 0.2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform $transition-base;
+
+    .image-placeholder {
+        svg {
+            stroke: $neon-lavender;
+            filter: drop-shadow(0 0 10px $neon-lavender);
+        }
+    }
+}
+
+.project-content {
+    padding: $spacing-md;
+}
+
+.project-title {
+    font-size: $font-size-xl;
+    color: $pure-white;
+    margin-bottom: $spacing-sm;
+}
+
+.project-description {
+    font-size: $font-size-base;
+    color: $neon-gray;
+    line-height: 1.6;
+    margin-bottom: $spacing-md;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+}
+
+.tag {
+    padding: $spacing-xs $spacing-sm;
+    background: rgba($neon-magenta, 0.2);
+    border: 1px solid $neon-magenta;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    color: $neon-magenta;
+    font-family: $font-mono;
+    transition: all $transition-base;
+
+    &:hover {
+        background: rgba($neon-magenta, 0.4);
+        @include box-glow($neon-magenta, 0.8);
+    }
+}

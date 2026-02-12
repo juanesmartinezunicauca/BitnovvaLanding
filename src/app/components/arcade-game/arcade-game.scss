@@ -1,0 +1,69 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.arcade-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.arcade-frame {
+    @include glassmorphism(0.3, 10px);
+    border: 1px solid rgba($neon-lavender, 0.4);
+    box-shadow: 0 0 15px rgba($neon-lavender, 0.15);
+    border-radius: $radius-md;
+    padding: $spacing-xs;
+    animation: float 8s ease-in-out infinite;
+    position: relative;
+
+    @media (max-width: $breakpoint-lg) {
+        max-width: 380px;
+    }
+}
+
+.arcade-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-xs;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba($neon-lavender, 0.3);
+}
+
+.arcade-title {
+    font-family: $font-heading;
+    font-size: $font-size-base;
+    font-weight: 700;
+    @include gradient-text($gradient-primary);
+    letter-spacing: 0.1em;
+}
+
+.arcade-score {
+    font-family: $font-mono;
+    font-size: $font-size-sm;
+    color: $neon-cyan;
+    @include neon-glow($neon-cyan, 0.8);
+    font-weight: 600;
+}
+
+.game-canvas {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: rgba($deep-black, 0.8);
+    border-radius: $radius-sm;
+    display: block;
+
+    border: 1px solid rgba($neon-cyan, 0.3);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}

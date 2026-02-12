@@ -1,0 +1,88 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.about-section {
+    padding: $spacing-xl 0;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    text-align: center;
+    margin-bottom: $spacing-sm;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: $font-size-lg;
+    color: $neon-gray;
+    margin-bottom: $spacing-lg;
+}
+
+.about-grid {
+    @include grid-auto-fit(280px, $spacing-md);
+    margin-bottom: $spacing-lg;
+}
+
+.about-card {
+    @include glassmorphism(0.3, 12px);
+    padding: $spacing-md;
+    border-radius: $radius-lg;
+    text-align: center;
+    transition: all $transition-base;
+
+    &:hover {
+        @include hover-lift(15px);
+        @include box-glow($neon-lavender, 1.5);
+    }
+
+    .card-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto $spacing-sm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: $gradient-primary;
+
+        svg {
+            stroke: $deep-black;
+        }
+    }
+
+    h3 {
+        font-size: $font-size-lg;
+        color: $neon-lavender;
+        margin-bottom: $spacing-xs;
+    }
+
+    .stat-number {
+        font-size: $font-size-3xl;
+        font-family: $font-heading;
+        @include gradient-text($gradient-primary);
+        font-weight: 900;
+        margin: $spacing-sm 0;
+    }
+
+    p {
+        font-size: $font-size-sm;
+        color: $neon-gray;
+    }
+}
+
+.about-description {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+
+    p {
+        font-size: $font-size-lg;
+        line-height: 1.8;
+        margin-bottom: $spacing-md;
+
+        .highlight {
+            @include gradient-text($gradient-primary);
+            font-weight: 700;
+        }
+    }
+}
