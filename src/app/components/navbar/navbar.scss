@@ -6,9 +6,12 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: var(--z-navbar);
-    padding: $spacing-sm 0;
-    transition: all $transition-base;
+    z-index: 100;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
 
     &::before {
         content: '';
@@ -17,8 +20,9 @@
         left: 0;
         width: 100%;
         height: 1px;
-        background: linear-gradient(90deg, transparent, $neon-lavender, transparent);
-        opacity: 0.5;
+        background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        opacity: 0.8;
+        box-shadow: 0 0 10px var(--neon-blue);
     }
 }
 
@@ -28,61 +32,81 @@
     align-items: center;
 }
 
-.logo {
-    font-size: $font-size-xl;
-    font-family: $font-heading;
-    color: $pure-white;
-    margin: 0;
-    position: relative;
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
 
-    .bracket {
-        color: $neon-cyan;
-        @include neon-glow($neon-cyan, 0.8);
-    }
+    &:hover {
+        .logo-img {
+            filter: drop-shadow(0 0 10px var(--neon-blue));
+            transform: scale(1.05) rotate(5deg);
+        }
 
-    &.glitch {
-        @include glitch-effect();
+        .logo-text {
+            filter: drop-shadow(0 0 5px var(--neon-blue));
+        }
     }
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.logo-text {
+    height: 25px; // Adjusted for proportion
+    width: auto;
+    transition: all 0.3s ease;
 }
 
 .nav-links {
     display: flex;
-    gap: $spacing-md;
+    gap: 2rem;
     list-style: none;
     margin: 0;
     padding: 0;
 
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: 768px) {
         display: none;
     }
 }
 
 .nav-link {
-    font-family: $font-subheading;
-    font-size: $font-size-base;
-    color: $neon-gray;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--neon-white);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     position: relative;
-    transition: all $transition-base;
+    transition: all 0.3s ease;
+
+    &::before {
+        content: '[';
+        margin-right: 5px;
+        opacity: 0;
+        color: var(--neon-white);
+        transition: all 0.3s ease;
+    }
 
     &::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: $gradient-primary;
-        transition: width $transition-base;
+        content: ']';
+        margin-left: 5px;
+        opacity: 0;
+        color: var(--neon-blue);
+        transition: all 0.3s ease;
     }
 
     &:hover {
-        color: $neon-lavender;
-        @include neon-glow($neon-lavender, 0.5);
+        color: var(--neon-blue);
+        text-shadow: var(--glow-blue);
 
+        &::before,
         &::after {
-            width: 100%;
+            opacity: 1;
+            text-shadow: 0 0 5px var(--neon-blue);
         }
     }
 }
@@ -90,26 +114,30 @@
 .burger-menu {
     display: none;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 5px;
 
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: 768px) {
         display: flex;
     }
 
     span {
-        width: 25px;
+        width: 30px;
         height: 2px;
-        background: $neon-lavender;
-        transition: all $transition-base;
-        @include box-glow($neon-lavender, 0.5);
+        background: var(--neon-blue);
+        transition: all 0.3s ease;
+        box-shadow: 0 0 5px var(--neon-blue);
     }
 
     &:hover span {
-        background: $neon-cyan;
-        @include box-glow($neon-cyan, 1);
+        background: var(--neon-pink);
+        box-shadow: 0 0 8px var(--neon-pink);
+
+        &:nth-child(2) {
+            transform: translateX(-5px);
+        }
     }
 }

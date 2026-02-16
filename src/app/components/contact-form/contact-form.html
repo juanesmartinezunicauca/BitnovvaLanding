@@ -1,0 +1,65 @@
+<section class="contact-form-section section">
+    <div class="container">
+        <div class="form-container glassmorphism animate-fadeInUp">
+            <button class="back-btn" (click)="goBack()" aria-label="Volver">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span>Volver</span>
+            </button>
+
+            <h2 class="section-title glitch" data-text="Contáctanos">
+                Contáctanos
+            </h2>
+            <p class="section-subtitle">Envíanos un mensaje y te responderemos lo antes posible.</p>
+
+            <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="cyber-form">
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="name" name="name" [(ngModel)]="name" required
+                                placeholder="Tu nombre completo" class="cyber-input">
+                            <span class="input-focus-border"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Tu Correo / Contacto</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="email" name="email" [(ngModel)]="email" required
+                                placeholder="Para poder responderte" class="cyber-input">
+                            <span class="input-focus-border"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label for="subject">Asunto</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="subject" name="subject" [(ngModel)]="subject" required
+                            placeholder="¿De qué trata tu mensaje?" class="cyber-input">
+                        <span class="input-focus-border"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <div class="input-wrapper">
+                        <textarea id="description" name="description" [(ngModel)]="description" required
+                            placeholder="Cuéntanos más detalles..." class="cyber-input" rows="5"></textarea>
+                        <span class="input-focus-border"></span>
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="!contactForm.form.valid" class="neon-btn neon-btn--filled">
+                    <span>Enviar Correo</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</section>

@@ -137,9 +137,13 @@ export class Avatar3d implements AfterViewInit, OnDestroy {
             // Scale
             const maxDim = Math.max(size.x, size.y, size.z);
             if (maxDim > 0) {
-                const scale = 2.2 / maxDim;
+                // Increased scale to 3.5 for a very close-up view
+                const scale = 3.5 / maxDim;
                 console.log('Avatar3d: Applied scale', scale);
                 this.mesh.scale.set(scale, scale, scale);
+
+                // Move down further to frame the head properly
+                this.mesh.position.y -= 0.8;
             } else {
                 console.warn('Avatar3d: Model has 0 dimensions!');
             }

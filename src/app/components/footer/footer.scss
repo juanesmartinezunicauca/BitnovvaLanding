@@ -2,41 +2,62 @@
 @import '../../../styles/mixins';
 
 .footer-section {
-    background: linear-gradient(180deg, transparent, rgba($neon-lavender, 0.05));
-    padding: $spacing-xl 0 $spacing-md;
-    border-top: 1px solid rgba($neon-lavender, 0.3);
+    background: var(--bg-dark);
+    padding: var(--spacing-xl) 0 var(--spacing-md);
+    border-top: 1px solid rgba(0, 240, 255, 0.1);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        box-shadow: 0 0 10px var(--neon-blue);
+    }
 }
 
 .footer-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: $spacing-lg;
-    margin-bottom: $spacing-lg;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
 }
 
 .footer-column {
     .footer-title {
-        font-size: $font-size-2xl;
-        font-family: $font-heading;
-        @include gradient-text($gradient-primary);
-        margin-bottom: $spacing-sm;
+        font-size: 2rem;
+        font-family: var(--font-heading);
+        color: var(--text-highlight);
+        margin-bottom: var(--spacing-sm);
+        letter-spacing: 2px;
+        text-transform: uppercase;
 
         .bracket {
-            color: $neon-cyan;
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink);
         }
     }
 
     .footer-description {
-        color: $neon-gray;
-        margin-bottom: $spacing-md;
+        color: var(--text-muted);
+        margin-bottom: var(--spacing-md);
+        font-family: var(--font-mono);
+        max-width: 300px;
     }
 }
 
 .column-title {
-    font-size: $font-size-lg;
-    color: $neon-lavender;
-    margin-bottom: $spacing-sm;
-    font-family: $font-heading;
+    font-size: 1.2rem;
+    color: var(--neon-blue);
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 3px solid var(--neon-pink);
+    padding-left: 10px;
 }
 
 .footer-links {
@@ -45,19 +66,29 @@
     margin: 0;
 
     li {
-        margin-bottom: $spacing-xs;
+        margin-bottom: 0.8rem;
     }
 
     a {
-        color: $neon-gray;
-        font-size: $font-size-base;
-        transition: all $transition-base;
+        color: var(--text-muted);
+        font-size: 1rem;
+        transition: all 0.3s ease;
         display: inline-block;
+        font-family: var(--font-mono);
+        text-decoration: none;
+        position: relative;
 
         &:hover {
-            color: $neon-lavender;
-            transform: translateX(5px);
-            @include neon-glow($neon-lavender, 0.5);
+            color: var(--neon-blue);
+            transform: translateX(10px);
+            text-shadow: 0 0 8px var(--neon-blue);
+
+            &::before {
+                content: '>';
+                position: absolute;
+                left: -15px;
+                color: var(--neon-pink);
+            }
         }
     }
 }
@@ -70,39 +101,43 @@
     li {
         display: flex;
         align-items: center;
-        gap: $spacing-xs;
-        margin-bottom: $spacing-sm;
-        color: $neon-gray;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
+        color: var(--text-muted);
+        font-family: var(--font-mono);
 
         svg {
-            stroke: $neon-lavender;
+            stroke: var(--neon-blue);
             flex-shrink: 0;
+            filter: drop-shadow(0 0 2px var(--neon-blue));
         }
     }
 }
 
 .social-links {
     display: flex;
-    gap: $spacing-sm;
-    margin-top: $spacing-md;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
 }
 
 .social-link {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    @include glassmorphism(0.3, 10px);
-    @include neon-border($neon-lavender);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $neon-lavender;
-    transition: all $transition-base;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    clip-path: polygon(30% 0, 100% 0, 100% 70%, 70% 100%, 0 100%, 0 30%);
 
     &:hover {
-        background: rgba($neon-lavender, 0.2);
-        @include box-glow($neon-lavender, 1.5);
-        transform: translateY(-5px) rotate(360deg);
+        background: var(--neon-blue);
+        color: var(--bg-dark);
+        border-color: var(--neon-blue);
+        box-shadow: 0 0 15px var(--neon-blue);
+        transform: translateY(-3px);
     }
 
     svg {
@@ -113,17 +148,20 @@
 
 .footer-bottom {
     text-align: center;
-    padding-top: $spacing-md;
-    border-top: 1px solid rgba($neon-lavender, 0.2);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 
     p {
-        color: $neon-gray;
-        font-size: $font-size-sm;
-        margin: $spacing-xs 0;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin: var(--spacing-xs) 0;
+        font-family: var(--font-mono);
     }
 
     .heart {
-        color: $neon-magenta;
+        color: var(--neon-pink);
         animation: pulse-glow 1.5s ease-in-out infinite;
+        display: inline-block;
+        text-shadow: 0 0 5px var(--neon-pink);
     }
 }

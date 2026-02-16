@@ -1,17 +1,19 @@
 <nav class="navbar glassmorphism" appWaveEffect>
     <div class="container navbar-content">
         <div class="logo-container">
-            <h2 class="logo glitch" data-text="<BitNovva>">
-                <span class="bracket">&lt;</span>BitNovva<span class="bracket">&gt;</span>
-            </h2>
+            <a routerLink="/" class="logo-link">
+                <!-- Use /Logo/ to match folder name case -->
+                <img src="/Logo/logotipo.png" alt="BitNovva Logo" class="logo-img">
+                <img src="/Logo/nombre_bitnovva.png" alt="BitNovva" class="logo-text">
+            </a>
         </div>
 
         <ul class="nav-links">
-            <li><a href="#hero" class="nav-link">Inicio</a></li>
-            <li><a href="#about" class="nav-link">Nosotros</a></li>
-            <li><a href="#team" class="nav-link">Equipo</a></li>
-            <li><a href="#projects" class="nav-link">Proyectos</a></li>
-            <li><a href="#contact" class="nav-link">Contacto</a></li>
+            <li><a routerLink="/" class="nav-link">Inicio</a></li>
+            <li><a href="/#about" class="nav-link">Nosotros</a></li>
+            <li><a href="/#team" class="nav-link">Equipo</a></li>
+            <li><a href="/#projects" class="nav-link">Proyectos</a></li>
+            <li><a routerLink="/contacto" class="nav-link">Contacto</a></li>
         </ul>
 
         <button class="burger-menu" aria-label="Toggle menu">

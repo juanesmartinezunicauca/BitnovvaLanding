@@ -2,87 +2,202 @@
 @import '../../../styles/mixins';
 
 .about-section {
-    padding: $spacing-xl 0;
+    padding: var(--spacing-xl) 0;
+    position: relative;
+    background: radial-gradient(circle at center, rgba(0, 20, 40, 0.5), transparent 70%);
+
+    &::before {
+        content: "SYSTEM.INFO";
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        font-family: var(--font-mono);
+        color: var(--neon-blue);
+        opacity: 0.3;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        writing-mode: vertical-rl;
+    }
 }
 
 .section-title {
     font-size: clamp(2.5rem, 6vw, 4rem);
     text-align: center;
-    margin-bottom: $spacing-sm;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-highlight);
+    text-shadow: var(--glow-blue);
 }
 
 .section-subtitle {
     text-align: center;
-    font-size: $font-size-lg;
-    color: $neon-gray;
-    margin-bottom: $spacing-lg;
+    font-size: 1.2rem;
+    color: var(--neon-pink);
+    margin-bottom: var(--spacing-lg);
+    font-family: var(--font-mono);
+    letter-spacing: 1px;
 }
 
 .about-grid {
-    @include grid-auto-fit(280px, $spacing-md);
-    margin-bottom: $spacing-lg;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
 .about-card {
-    @include glassmorphism(0.3, 12px);
-    padding: $spacing-md;
-    border-radius: $radius-lg;
+    background: rgba(10, 15, 20, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    padding: var(--spacing-md);
     text-align: center;
-    transition: all $transition-base;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0,
+            100% 0,
+            100% calc(100% - 20px),
+            calc(100% - 20px) 100%,
+            0 100%);
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--neon-blue);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
 
     &:hover {
-        @include hover-lift(15px);
-        @include box-glow($neon-lavender, 1.5);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.2);
+        border-color: var(--neon-blue);
+
+        &::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            color: var(--neon-pink);
+            transform: scale(1.1) rotate(5deg);
+        }
     }
 
     .card-icon {
         width: 80px;
         height: 80px;
-        margin: 0 auto $spacing-sm;
+        margin: 0 auto var(--spacing-sm);
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 50%;
-        background: $gradient-primary;
+        border-radius: 0; // Square for tech look
+        background: rgba(0, 240, 255, 0.05);
+        border: 1px solid var(--neon-blue);
+        color: var(--neon-blue);
+        transition: all 0.3s ease;
 
         svg {
-            stroke: $deep-black;
+            stroke-width: 1.5;
         }
     }
 
     h3 {
-        font-size: $font-size-lg;
-        color: $neon-lavender;
-        margin-bottom: $spacing-xs;
+        font-size: 1.2rem;
+        color: var(--text-highlight);
+        margin-bottom: var(--spacing-xs);
+        font-family: var(--font-heading);
+        letter-spacing: 1px;
     }
 
     .stat-number {
-        font-size: $font-size-3xl;
-        font-family: $font-heading;
-        @include gradient-text($gradient-primary);
-        font-weight: 900;
-        margin: $spacing-sm 0;
+        font-size: 2.5rem;
+        font-family: var(--font-mono);
+        color: var(--neon-blue);
+        font-weight: 700;
+        margin: var(--spacing-sm) 0;
+        text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
     }
 
     p {
-        font-size: $font-size-sm;
-        color: $neon-gray;
+        font-size: 0.9rem;
+        color: var(--neon-white);
+        font-family: var(--font-mono);
     }
 }
 
-.about-description {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+
+    @media (max-width: 992px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.mission-vision-card {
+    background: rgba(10, 15, 20, 0.4);
+    border-left: 3px solid var(--neon-blue);
+    padding: var(--spacing-md);
+    position: relative;
+    transition: all 0.3s ease;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(152, 151, 244, 0.05) 0%, transparent 100%);
+        pointer-events: none;
+    }
+
+    &:hover {
+        background: rgba(152, 151, 244, 0.08);
+        border-left-width: 6px;
+        transform: translateX(10px);
+        box-shadow: -10px 0 20px rgba(152, 151, 244, 0.1);
+
+        .header-title {
+            color: var(--neon-pink);
+            text-shadow: var(--glow-pink);
+        }
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .header-line {
+        width: 30px;
+        height: 2px;
+        background: var(--neon-pink);
+    }
+
+    .header-title {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        color: var(--neon-blue);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0;
+        transition: all 0.3s ease;
+    }
 
     p {
-        font-size: $font-size-lg;
+        font-family: var(--font-body);
+        font-size: 1.1rem;
         line-height: 1.8;
-        margin-bottom: $spacing-md;
-
-        .highlight {
-            @include gradient-text($gradient-primary);
-            font-weight: 700;
-        }
+        color: var(--text-muted);
+        text-align: justify;
     }
 }

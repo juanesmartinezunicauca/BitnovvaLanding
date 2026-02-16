@@ -24,42 +24,47 @@ export class Team {
       name: 'Ana Sofia Arango',
       role: 'Lider de proyecto',
       skills: ['Java', 'HTML', 'DevOps'],
-      color: '#ff00ff', // Magenta
+      color: '#ff0055', // Neon Pink
       shape: 'icosahedron',
-      delay: '0.2s'
+      delay: '0.2s',
+      modelUrl: '/models/Sofia arango.glb'
     },
     {
       name: 'Juan Esteban Martinez',
       role: 'Web Master Developer',
       skills: ['React', 'Node.js', 'Python'],
-      color: '#00ffff', // Cyan
+      color: '#00f0ff', // Neon Blue
       shape: 'torus',
       delay: '0s',
       modelUrl: '/models/juan-esteban.glb'
     },
     {
       name: 'Juan Esteban Chavez',
+      role: 'Moderador',
+      skills: ['Docker', 'Kubernetes', 'AWS'],
+      color: '#ccff00', // Acid Green
+      shape: 'sphere',
+      delay: '0.4s',
+      modelUrl: '/models/Juan Chavez.glb'
+    },
+    {
+      name: 'Juan Diego Perez',
       role: 'Interventor de proyecto',
       skills: ['Docker', 'Kubernetes', 'AWS'],
-      color: '#ffff00', // Yellow
-      shape: 'sphere',
-      delay: '0.4s'
-    },
-    {
-      name: 'Juan',
-      role: 'Nomeacuerdoquehace',
-      skills: ['Docker', 'Kubernetes', 'AWS'],
-      color: '#00ff00', // Green
+      color: '#ccff00', // Acid Green
       shape: 'cube',
-      delay: '0.4s'
+      delay: '0.4s',
+      modelUrl: '/models/Juan Diego.glb'
     },
     {
-      name: 'Cristian',
+      name: 'Cristian Camilo Unas',
       role: 'Secretario de Proyecto',
       skills: ['Docker', 'Kubernetes', 'AWS'],
-      color: '#ff8800', // Orange
+      color: '#ffaa00', // Neon Amber
       shape: 'icosahedron',
-      delay: '0.4s'
+      delay: '0.4s',
+      modelUrl: '/models/cristian-camilo.glb'
     }
+
   ];
 }

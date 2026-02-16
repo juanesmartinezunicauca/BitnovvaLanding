@@ -1,38 +1,48 @@
-/* BitNovva Cyberpunk Landing - Global Styles */
+/* BitNovva Blade Runner Design - Global Styles */
 
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600;700&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
 
-/* Import partials */
+/* Import partials - Keeping these if they exist, but overriding variables */
 @import 'styles/variables';
 @import 'styles/mixins';
 @import 'styles/animations';
 
 /* CSS Custom Properties */
 :root {
-  /* Colors */
-  --neon-lavender: #9897f4;
-  --neon-cyan: #00ffff;
-  --neon-magenta: #ff00ff;
-  --deep-black: #000000;
-  --pure-white: #ffffff;
-  --neon-gray: #e0e0e0;
-  --grid-color: rgba(152, 151, 244, 0.1);
+  /* Blade Runner Palette - Updated */
+  --neon-blue: #9897f4;
+  /* Lavender (formerly Electric Blue) */
+  --neon-pink: #ff0055;
+  /* Neon Pink (Kept intact) */
+  --neon-amber: #d3a0bf;
+  /* Rose/Soft Pink (formerly Amber) */
+  --acid-green: #d3a0bf;
+  /* Rose/Soft Pink (formerly Toxic Green) */
+
+  --bg-dark: #050505;
+  /* Deepest Black */
+  --bg-panel: #0a0a0a;
+  /* Panel Background */
+  --bg-overlay: rgba(152, 151, 244, 0.15);
+  /* Tinted Overlay */
+
+  --text-main: #e0e0e0;
+  --text-muted: #a0a0b0;
+  --text-highlight: #ffffff;
+
+  --border-color: rgba(152, 151, 244, 0.2);
+  --grid-color: rgba(152, 151, 244, 0.05);
 
   /* Glow Effects */
-  --glow-lavender: 0 0 10px var(--neon-lavender),
-    0 0 20px var(--neon-lavender),
-    0 0 30px var(--neon-lavender);
-  --glow-cyan: 0 0 10px var(--neon-cyan),
-    0 0 20px var(--neon-cyan),
-    0 0 30px var(--neon-cyan);
-  --glow-magenta: 0 0 10px var(--neon-magenta),
-    0 0 20px var(--neon-magenta),
-    0 0 30px var(--neon-magenta);
+  --glow-blue: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 20px rgba(152, 151, 244, 0.5);
+  --glow-pink: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 20px rgba(255, 0, 85, 0.5);
+  --glow-amber: 0 0 5px var(--neon-amber), 0 0 10px var(--neon-amber), 0 0 20px rgba(211, 160, 191, 0.5);
+  --glow-text: 0 0 2px rgba(255, 255, 255, 0.8), 0 0 8px var(--neon-blue);
 
   /* Typography */
   --font-heading: 'Orbitron', sans-serif;
-  --font-subheading: 'Exo 2', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
   --font-mono: 'Share Tech Mono', monospace;
 
   /* Spacing */
@@ -42,9 +52,10 @@
   --spacing-lg: 4rem;
   --spacing-xl: 6rem;
 
-  /* Z-index layers */
+  /* Z-indexes */
   --z-background: -1;
-  --z-content: 1;
+  --z-content: 10;
+  --z-overlay: 50;
   --z-navbar: 100;
   --z-modal: 1000;
 }
@@ -62,13 +73,18 @@ html {
 }
 
 body {
-  font-family: var(--font-subheading);
-  background-color: var(--deep-black);
-  color: var(--pure-white);
+  font-family: var(--font-body);
+  background-color: var(--bg-dark);
+  color: var(--text-main);
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    repeating-linear-gradient(0deg, transparent, transparent 1px, var(--bg-dark) 1px, var(--bg-dark) 2px);
+  background-size: 100% 4px;
+  /* Scanline effect base */
 }
 
 /* Typography */
@@ -79,72 +95,67 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-highlight);
+  text-shadow: var(--glow-text);
 }
 
 h1 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: clamp(2.5rem, 6vw, 5rem);
 }
 
 h2 {
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
 }
 
 h3 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 p {
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  color: var(--neon-gray);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 70ch;
 }
 
 code,
 pre {
   font-family: var(--font-mono);
+  color: var(--neon-amber);
 }
 
 /* Links */
 a {
-  color: var(--neon-lavender);
+  color: var(--neon-blue);
   text-decoration: none;
   transition: all 0.3s ease;
+  position: relative;
 
   &:hover {
-    color: var(--neon-cyan);
-    text-shadow: var(--glow-cyan);
+    color: var(--neon-pink);
+    text-shadow: var(--glow-pink);
   }
-}
-
-/* Selection */
-::selection {
-  background-color: var(--neon-lavender);
-  color: var(--deep-black);
-}
-
-::-moz-selection {
-  background-color: var(--neon-lavender);
-  color: var(--deep-black);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--deep-black);
+  background: var(--bg-dark);
   border-left: 1px solid var(--grid-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--neon-lavender), var(--neon-cyan));
-  border-radius: 5px;
+  background: var(--neon-blue);
+  border-radius: 0;
+  box-shadow: var(--glow-blue);
 
   &:hover {
-    background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
+    background: var(--neon-pink);
+    box-shadow: var(--glow-pink);
   }
 }
 
@@ -161,48 +172,90 @@ a {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--neon-lavender), var(--neon-cyan));
+  background: linear-gradient(90deg, var(--neon-blue), var(--text-highlight));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-shadow: none;
+  /* Gradient text interactions with shadow can be tricky */
+  filter: drop-shadow(0 0 5px rgba(0, 240, 255, 0.5));
 }
 
 .neon-border {
-  border: 2px solid var(--neon-lavender);
-  box-shadow: inset 0 0 20px rgba(152, 151, 244, 0.2),
-    0 0 20px rgba(152, 151, 244, 0.4);
+  border: 1px solid var(--neon-blue);
+  box-shadow: var(--glow-blue), inset 0 0 10px rgba(0, 240, 255, 0.1);
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--neon-blue);
+    transition: all 0.3s ease;
+  }
+
+  &::before {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  &::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+  }
 }
 
-.glassmorphism {
-  background: rgba(10, 10, 10, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(152, 151, 244, 0.2);
+.glass-panel {
+  background: rgba(10, 15, 20, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
+/* Glitch Effect Keyframes (Basic placeholder, can be expanded in animations.scss) */
+@keyframes glitch-anim {
+  0% {
+    transform: translate(0);
+  }
 
+  20% {
+    transform: translate(-2px, 2px);
+  }
 
-/* Responsive */
+  40% {
+    transform: translate(-2px, -2px);
+  }
+
+  60% {
+    transform: translate(2px, 2px);
+  }
+
+  80% {
+    transform: translate(2px, -2px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
+}
+
+.glitch-hover:hover {
+  animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+  color: var(--neon-pink);
+}
+
+/* Mobile Adjustments */
 @media (max-width: 768px) {
   :root {
+    --spacing-md: 1.5rem;
     --spacing-lg: 3rem;
     --spacing-xl: 4rem;
   }
-
-  .container {
-    padding: 0 var(--spacing-sm);
-  }
-}
-
-/* Wave Ripple Effect */
-.wave-ripple {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--neon-cyan) 0%, transparent 70%);
-  transform: translate(-50%, -50%) scale(0);
-  animation: wave 0.6s linear;
-  pointer-events: none;
-  z-index: 9999;
 }
