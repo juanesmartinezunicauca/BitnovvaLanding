@@ -2,8 +2,8 @@
     <div class="container">
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="hero-title glitch" data-text="bitNovva">
-                    bitNovva
+                <h1 class="hero-title">
+                    bitNova
                 </h1>
                 <p class="hero-subtitle animate-fadeInUp">
                     Innovamos contigo, bit a bit
@@ -28,7 +28,34 @@
             </div>
 
             <div class="hero-visual">
-                <app-arcade-game></app-arcade-game>
+                <div class="code-editor-container animate-fadeInRight">
+                    <div class="editor-header">
+                        <div class="window-controls">
+                            <span class="control close"></span>
+                            <span class="control minimize"></span>
+                            <span class="control maximize"></span>
+                        </div>
+                        <div class="window-title">resilience.ts</div>
+                    </div>
+                    <div class="editor-body">
+                        <pre><code><span class="keyword">class</span> <span class="class-name">BitnovvaTeam</span> <span class="keyword">implements</span> <span class="class-name">ResilientSystem</span> {{ '{' }}
+                    <span class="keyword">private</span> passion = <span class="number">Infinity</span>;
+
+                    <span class="keyword">async</span> <span class="function">faceChallenge</span>(challenge: <span class="type">Challenge</span>): <span class="type">Promise</span>&lt;<span class="type">Success</span>&gt; {{ '{' }}
+                        <span class="keyword">try</span> {{ '{' }}
+                        <span class="keyword">return</span> <span class="keyword">await</span> <span class="keyword">this</span>.<span class="call">innovate</span>(challenge);
+                        {{ '}' }} <span class="keyword">catch</span> (error) {{ '{' }}
+                        <span class="comment">// "El fracaso es solo iteración"</span>
+                        <span class="keyword">return</span> <span class="keyword">this</span>.<span class="call">adaptAndOvercome</span>();
+                        {{ '}' }}
+                    {{ '}' }}
+
+                    <span class="keyword">private</span> <span class="function">adaptAndOvercome</span>(): <span class="type">Success</span> {{ '{' }}
+                        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">Success</span>(<span class="string">"Resilience unlocked: We never give up."</span>);
+                    {{ '}' }}
+                    {{ '}' }}</code></pre>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

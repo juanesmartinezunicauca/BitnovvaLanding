@@ -69,40 +69,81 @@
 }
 
 .hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(3rem, 8vw, 6rem);
-    color: var(--text-highlight);
-    text-shadow: var(--glow-blue);
+    font-family: 'Oxanium', sans-serif;
+    font-weight: 800;
+    font-size: clamp(4rem, 12vw, 9rem);
+
+    // Base fallback color
+    color: var(--pure-white);
+
+    // Chrome / Metallic beveled gradient
+    background: linear-gradient(180deg,
+            #ffffff 0%,
+            #d3a0bf 35%,
+            var(--bg-dark) 48%,
+            var(--neon-blue) 52%,
+            #9897f4 80%,
+            #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    // Use drop-shadow filter instead of text-shadow since background-clip hides text-shadows
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.5)) drop-shadow(0 0 20px rgba(255, 0, 85, 0.3));
+
     margin-bottom: var(--spacing-sm);
     text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: neon-pulse-filter 3s infinite alternate;
+}
 
-    &.glitch {
-        position: relative;
-        animation: glitch-skew 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+@keyframes neon-pulse-filter {
 
-        &::before,
-        &::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        filter:
+            drop-shadow(0 0 5px var(--neon-blue)) drop-shadow(0 0 20px var(--neon-pink));
+        opacity: 1;
+    }
 
-        &::before {
-            left: 2px;
-            text-shadow: -2px 0 var(--neon-pink);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
+    20%,
+    24%,
+    55% {
+        filter: none;
+        opacity: 0.8;
+    }
+}
 
-        &::after {
-            left: -2px;
-            text-shadow: -2px 0 var(--neon-blue);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
+@keyframes neon-pulse {
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        text-shadow:
+            0 0 5px var(--neon-blue),
+            0 0 10px var(--neon-blue),
+            0 0 20px var(--neon-blue),
+            0 0 40px var(--neon-pink),
+            0 0 80px var(--neon-pink);
+        color: var(--pure-white);
+    }
+
+    20%,
+    24%,
+    55% {
+        text-shadow: none;
+        color: rgba(255, 255, 255, 0.2);
     }
 }
 
@@ -188,6 +229,9 @@
 .hero-visual {
     position: relative;
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &::before {
         content: '';
@@ -195,10 +239,119 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 80%;
-        height: 80%;
+        width: 60%;
+        height: 60%;
         background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
         filter: blur(40px);
         z-index: -1;
+    }
+}
+
+.code-editor-container {
+    background: rgba(10, 15, 20, 0.85);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    max-height: 350px;
+    max-width: 450px;
+    /* Restrict width so it doesn't take the full column */
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 240, 255, 0.2);
+        border-color: rgba(0, 240, 255, 0.4);
+    }
+}
+
+.editor-header {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.window-controls {
+    display: flex;
+    gap: 6px;
+
+    .control {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+
+        &.close {
+            background: #ff5f56;
+        }
+
+        &.minimize {
+            background: #ffbd2e;
+        }
+
+        &.maximize {
+            background: #27c93f;
+        }
+    }
+}
+
+.window-title {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 36px; // offset the controls to center the text
+}
+
+.editor-body {
+    padding: 15px;
+    overflow-x: auto;
+
+    pre {
+        margin: 0;
+    }
+
+    code {
+        font-family: 'Fira Code', 'Courier New', Courier, monospace;
+        font-size: 0.8rem;
+        line-height: 1.4;
+        color: var(--neon-white);
+
+        .keyword {
+            color: var(--neon-pink);
+        }
+
+        .class-name {
+            color: var(--neon-blue);
+        }
+
+        .function {
+            color: #a6e22e;
+        }
+
+        .type {
+            color: #66d9ef;
+        }
+
+        .string {
+            color: #e6db74;
+        }
+
+        .number {
+            color: #ae81ff;
+        }
+
+        .comment {
+            color: #75715e;
+            font-style: italic;
+        }
+
+        .call {
+            color: #a6e22e;
+        }
     }
 }

@@ -193,11 +193,26 @@
         transition: all 0.3s ease;
     }
 
-    p {
+    p,
+    ul {
         font-family: var(--font-body);
         font-size: 1.1rem;
         line-height: 1.8;
         color: var(--text-muted);
         text-align: justify;
+    }
+
+    ul {
+        padding-left: 1.5rem;
+        margin-top: 0;
+
+        li {
+            margin-bottom: 0.8rem;
+
+            strong {
+                color: var(--neon-blue);
+                font-weight: 600;
+            }
+        }
     }
 }
